@@ -1,3 +1,13 @@
+# {
+    
+#     "postTitle":"Updated Title",
+#     "postBody":"Updated Body",
+#     "imgUrl":"updated url",
+#     "id":"7c374430-d05f-11ec-90d0-b9cafb0e6334",
+#     "tags","udpated tags here"
+    
+# }
+
 service: dynamodb-crud-api
 
 provider:
@@ -16,6 +26,8 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
+        - dynamodb:PutItem
+        - dynamodb:BatchWriteItem
         - dynamodb:DeleteItem
       Resource: arn:aws:dynamodb:*
 
@@ -36,7 +48,7 @@ functions:
       - http:
           path: post/create
           method: post
-          # cors: true
+          cors: true
 
   getPost:
     handler: post/get.getPost
@@ -44,7 +56,7 @@ functions:
       - http:
           path: post/{id}
           method: get
-          # cors: true
+          cors: true
 
   updatePost:
     handler: post/update.updatePost
@@ -52,7 +64,7 @@ functions:
       - http:
           path: post/update
           method: patch
-          # cors: true
+          cors: true
 
   deletePost:
     handler: post/delete.deletePost
@@ -60,7 +72,7 @@ functions:
       - http:
           path: post/delete
           method: delete
-          # cors: true
+          cors: true
 
 resources:
   Resources:
