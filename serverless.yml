@@ -1,14 +1,16 @@
+org: wasimahmad
+app: wasimahmad-dynamodb-crud-api
 # {
     
 #     "postTitle":"Updated Title",
 #     "postBody":"Updated Body",
 #     "imgUrl":"updated url",
 #     "id":"7c374430-d05f-11ec-90d0-b9cafb0e6334",
-#     "tags","udpated tags here"
+#     "tags":"udpated tags here"
     
 # }
 
-service: dynamodb-crud-api
+service: wasimahmad-dynamodb-crud-api
 
 provider:
   name: aws

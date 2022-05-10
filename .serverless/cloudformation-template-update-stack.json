@@ -74,31 +74,31 @@
     "ListPostsLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dynamodb-crud-api-dev-listPosts"
+        "LogGroupName": "/aws/lambda/wasimahmad-dynamodb-crud-api-dev-listPosts"
       }
     },
     "CreatePostLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dynamodb-crud-api-dev-createPost"
+        "LogGroupName": "/aws/lambda/wasimahmad-dynamodb-crud-api-dev-createPost"
       }
     },
     "GetPostLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dynamodb-crud-api-dev-getPost"
+        "LogGroupName": "/aws/lambda/wasimahmad-dynamodb-crud-api-dev-getPost"
       }
     },
     "UpdatePostLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dynamodb-crud-api-dev-updatePost"
+        "LogGroupName": "/aws/lambda/wasimahmad-dynamodb-crud-api-dev-updatePost"
       }
     },
     "DeletePostLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dynamodb-crud-api-dev-deletePost"
+        "LogGroupName": "/aws/lambda/wasimahmad-dynamodb-crud-api-dev-deletePost"
       }
     },
     "IamRoleLambdaExecution": {
@@ -126,7 +126,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "dynamodb-crud-api",
+                  "wasimahmad-dynamodb-crud-api",
                   "dev",
                   "lambda"
                 ]
@@ -143,7 +143,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dynamodb-crud-api-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/wasimahmad-dynamodb-crud-api-dev*:*"
                     }
                   ]
                 },
@@ -154,7 +154,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dynamodb-crud-api-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/wasimahmad-dynamodb-crud-api-dev*:*:*"
                     }
                   ]
                 },
@@ -181,7 +181,7 @@
           "Fn::Join": [
             "-",
             [
-              "dynamodb-crud-api",
+              "wasimahmad-dynamodb-crud-api",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -192,6 +192,76 @@
         }
       }
     },
+    "EnterpriseLogAccessIamRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::802587217904:root"
+              },
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": "ServerlessEnterprise-c8c6d1a9-9688-49e1-81d1-d72a711d155b"
+                }
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "LogFilterAccess",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:FilterLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "ListPostsLogGroup",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "CreatePostLogGroup",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "GetPostLogGroup",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "UpdatePostLogGroup",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "DeletePostLogGroup",
+                        "Arn"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "ListPostsLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -199,11 +269,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/wasimahmad-dynamodb-crud-api.zip"
         },
-        "Handler": "post/list.listPosts",
+        "Handler": "s_listPosts.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "dynamodb-crud-api-dev-listPosts",
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-listPosts",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -230,11 +300,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/wasimahmad-dynamodb-crud-api.zip"
         },
-        "Handler": "post/create.createPost",
+        "Handler": "s_createPost.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "dynamodb-crud-api-dev-createPost",
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-createPost",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -261,11 +331,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/wasimahmad-dynamodb-crud-api.zip"
         },
-        "Handler": "post/get.getPost",
+        "Handler": "s_getPost.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "dynamodb-crud-api-dev-getPost",
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-getPost",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -292,11 +362,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/wasimahmad-dynamodb-crud-api.zip"
         },
-        "Handler": "post/update.updatePost",
+        "Handler": "s_updatePost.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "dynamodb-crud-api-dev-updatePost",
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-updatePost",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -323,11 +393,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/wasimahmad-dynamodb-crud-api.zip"
         },
-        "Handler": "post/delete.deletePost",
+        "Handler": "s_deletePost.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "dynamodb-crud-api-dev-deletePost",
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-deletePost",
         "MemorySize": 1024,
         "Timeout": 6,
         "Environment": {
@@ -347,60 +417,60 @@
         "DeletePostLogGroup"
       ]
     },
-    "GetPostLambdaVersionRIuojpPX4QAV6YVfHH4H1saaOSYGLaNsg4z912Xzpa8": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "GetPostLambdaFunction"
-        },
-        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
-      }
-    },
-    "CreatePostLambdaVersionUDve4vmrwaLIfMiBXsJPaurtZx2K5A13F1cASAXHYJ0": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CreatePostLambdaFunction"
-        },
-        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
-      }
-    },
-    "UpdatePostLambdaVersionMIY1eGtL0zQ6DynveNy929rtRDeDrtnmgn6Ra2GRcg": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "UpdatePostLambdaFunction"
-        },
-        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
-      }
-    },
-    "DeletePostLambdaVersionE33wcoAodDAYn1fuUTZToOelExTt7nAt9MPpojF2qE": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "DeletePostLambdaFunction"
-        },
-        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
-      }
-    },
-    "ListPostsLambdaVersiontJ8Bp3QTCibxvOfohfeGMfGf9c28Pgxcj65UybmAEc": {
+    "ListPostsLambdaVersionJDo9oQ3AzDTdn20WuIREeGcv4ImnfM5l4SaI9RYQYMs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListPostsLambdaFunction"
         },
-        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
+        "CodeSha256": "KaDz4y1Ge1mhXn2lUDhrSSv1xTAabjL1s0zU3idpy0w="
+      }
+    },
+    "CreatePostLambdaVersiongQhlCFSPgnylcBCiEGaSnsOJOUn61XuUSZeaR2Gqdaw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CreatePostLambdaFunction"
+        },
+        "CodeSha256": "KaDz4y1Ge1mhXn2lUDhrSSv1xTAabjL1s0zU3idpy0w="
+      }
+    },
+    "GetPostLambdaVersion2ebTzvAF59cmNIRVlfshg6blUJuWYCumUBOb1LvNVk": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GetPostLambdaFunction"
+        },
+        "CodeSha256": "KaDz4y1Ge1mhXn2lUDhrSSv1xTAabjL1s0zU3idpy0w="
+      }
+    },
+    "DeletePostLambdaVersionqauHn1ADRx8poo7sm6ZKOLmrDZlP5PUSJPd0eCrhLs": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "DeletePostLambdaFunction"
+        },
+        "CodeSha256": "KaDz4y1Ge1mhXn2lUDhrSSv1xTAabjL1s0zU3idpy0w="
+      }
+    },
+    "UpdatePostLambdaVersion8AmIUEU2H95HLWlCPAUGsQ730gakvpu59IF8UzFE": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UpdatePostLambdaFunction"
+        },
+        "CodeSha256": "KaDz4y1Ge1mhXn2lUDhrSSv1xTAabjL1s0zU3idpy0w="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-dynamodb-crud-api",
+        "Name": "dev-wasimahmad-dynamodb-crud-api",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -954,7 +1024,7 @@
         "DeletePostLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1652189279380": {
+    "ApiGatewayDeployment1652193867336": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1160,6 +1230,133 @@
         }
       }
     },
+    "ApiGatewayLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/api-gateway/wasimahmad-dynamodb-crud-api-dev"
+      }
+    },
+    "CustomApiGatewayAccountCloudWatchRole": {
+      "Type": "Custom::ApiGatewayAccountRole",
+      "Version": 1,
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDashresourceDashapigwDashcwDashroleLambdaFunction",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "IamRoleCustomResourcesLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "dev",
+                  "wasimahmad-dynamodb-crud-api",
+                  "custom-resources-lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "iam:",
+                        {
+                          "Ref": "AWS::AccountId"
+                        },
+                        "role/*"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "iam:AttachRolePolicy",
+                    "iam:CreateRole",
+                    "iam:ListAttachedRolePolicies",
+                    "iam:PassRole"
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "apigateway:*::/account"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "apigateway:GET",
+                    "apigateway:PATCH"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CustomDashresourceDashapigwDashcwDashroleLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wasimahmad-dynamodb-crud-api/dev/1652193881175-2022-05-10T14:44:41.175Z/custom-resources.zip"
+        },
+        "FunctionName": "wasimahmad-dynamodb-crud-api-dev-custom-resource-apigw-cw-role",
+        "Handler": "apiGatewayCloudWatchRole/handler.handler",
+        "MemorySize": 1024,
+        "Runtime": "nodejs12.x",
+        "Timeout": 180,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleCustomResourcesLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleCustomResourcesLambdaExecution"
+      ]
+    },
     "UsersDynamoDbTable": {
       "Type": "AWS::DynamoDB::Table",
       "DeletionPolicy": "Retain",
@@ -1182,6 +1379,66 @@
         },
         "TableName": "PostsTable"
       }
+    },
+    "CWLSubFilterListPostsLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "ListPostsLogGroup"
+        }
+      }
+    },
+    "CWLSubFilterCreatePostLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "CreatePostLogGroup"
+        }
+      }
+    },
+    "CWLSubFilterGetPostLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "GetPostLogGroup"
+        }
+      }
+    },
+    "CWLSubFilterUpdatePostLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "UpdatePostLogGroup"
+        }
+      }
+    },
+    "CWLSubFilterDeletePostLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "DeletePostLogGroup"
+        }
+      }
+    },
+    "CWLSubFilterApiGatewayLogGroupUsWest2": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-west-2:802587217904:destination:c8c6d1a9-9688-49e1-81d1-d72a711d155b#jBtzZs0dBDgQBNv3Lr#wasimahmad-dynamodb-crud-api#dev",
+        "FilterPattern": "\"SLS_ACCESS_LOG\"",
+        "LogGroupName": {
+          "Ref": "ApiGatewayLogGroup"
+        }
+      }
     }
   },
   "Outputs": {
@@ -1190,52 +1447,63 @@
         "Ref": "ServerlessDeploymentBucket"
       },
       "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-ServerlessDeploymentBucketName"
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-ServerlessDeploymentBucketName"
       }
     },
-    "GetPostLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
+    "EnterpriseLogAccessIamRole": {
       "Value": {
-        "Ref": "GetPostLambdaVersionRIuojpPX4QAV6YVfHH4H1saaOSYGLaNsg4z912Xzpa8"
+        "Fn::GetAtt": [
+          "EnterpriseLogAccessIamRole",
+          "Arn"
+        ]
       },
       "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-GetPostLambdaFunctionQualifiedArn"
-      }
-    },
-    "CreatePostLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "CreatePostLambdaVersionUDve4vmrwaLIfMiBXsJPaurtZx2K5A13F1cASAXHYJ0"
-      },
-      "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-CreatePostLambdaFunctionQualifiedArn"
-      }
-    },
-    "UpdatePostLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "UpdatePostLambdaVersionMIY1eGtL0zQ6DynveNy929rtRDeDrtnmgn6Ra2GRcg"
-      },
-      "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-UpdatePostLambdaFunctionQualifiedArn"
-      }
-    },
-    "DeletePostLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "DeletePostLambdaVersionE33wcoAodDAYn1fuUTZToOelExTt7nAt9MPpojF2qE"
-      },
-      "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-DeletePostLambdaFunctionQualifiedArn"
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-EnterpriseLogAccessIamRole"
       }
     },
     "ListPostsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListPostsLambdaVersiontJ8Bp3QTCibxvOfohfeGMfGf9c28Pgxcj65UybmAEc"
+        "Ref": "ListPostsLambdaVersionJDo9oQ3AzDTdn20WuIREeGcv4ImnfM5l4SaI9RYQYMs"
       },
       "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-ListPostsLambdaFunctionQualifiedArn"
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-ListPostsLambdaFunctionQualifiedArn"
+      }
+    },
+    "CreatePostLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CreatePostLambdaVersiongQhlCFSPgnylcBCiEGaSnsOJOUn61XuUSZeaR2Gqdaw"
+      },
+      "Export": {
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-CreatePostLambdaFunctionQualifiedArn"
+      }
+    },
+    "GetPostLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "GetPostLambdaVersion2ebTzvAF59cmNIRVlfshg6blUJuWYCumUBOb1LvNVk"
+      },
+      "Export": {
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-GetPostLambdaFunctionQualifiedArn"
+      }
+    },
+    "DeletePostLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "DeletePostLambdaVersionqauHn1ADRx8poo7sm6ZKOLmrDZlP5PUSJPd0eCrhLs"
+      },
+      "Export": {
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-DeletePostLambdaFunctionQualifiedArn"
+      }
+    },
+    "UpdatePostLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UpdatePostLambdaVersion8AmIUEU2H95HLWlCPAUGsQ730gakvpu59IF8UzFE"
+      },
+      "Export": {
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-UpdatePostLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
@@ -1261,7 +1529,7 @@
         ]
       },
       "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-ServiceEndpoint"
+        "Name": "sls-wasimahmad-dynamodb-crud-api-dev-ServiceEndpoint"
       }
     }
   }
