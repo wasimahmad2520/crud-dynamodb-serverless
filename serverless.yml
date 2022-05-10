@@ -29,7 +29,9 @@ provider:
         - dynamodb:PutItem
         - dynamodb:BatchWriteItem
         - dynamodb:DeleteItem
-      Resource: arn:aws:dynamodb:*
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMO_TABLE_NAME}"
+      # Resource: "arn:aws:dynamodb:#{AWS::region}:#{AWS::AccountId}:table/${self:provider.environment.DYNAMO_TABLE_NAME}"
+      
 
   #     Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMO_TABLE_NAME}"
 

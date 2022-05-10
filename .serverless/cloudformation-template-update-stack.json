@@ -170,7 +170,7 @@
                     "dynamodb:BatchWriteItem",
                     "dynamodb:DeleteItem"
                   ],
-                  "Resource": "arn:aws:dynamodb:*"
+                  "Resource": "arn:aws:dynamodb:us-west-2:*:table/PostsTable"
                 }
               ]
             }
@@ -199,7 +199,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652187333282-2022-05-10T12:55:33.282Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
         },
         "Handler": "post/list.listPosts",
         "Runtime": "nodejs12.x",
@@ -230,7 +230,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652187333282-2022-05-10T12:55:33.282Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
         },
         "Handler": "post/create.createPost",
         "Runtime": "nodejs12.x",
@@ -261,7 +261,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652187333282-2022-05-10T12:55:33.282Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
         },
         "Handler": "post/get.getPost",
         "Runtime": "nodejs12.x",
@@ -292,7 +292,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652187333282-2022-05-10T12:55:33.282Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
         },
         "Handler": "post/update.updatePost",
         "Runtime": "nodejs12.x",
@@ -323,7 +323,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/dynamodb-crud-api/dev/1652187333282-2022-05-10T12:55:33.282Z/dynamodb-crud-api.zip"
+          "S3Key": "serverless/dynamodb-crud-api/dev/1652189285005-2022-05-10T13:28:05.005Z/dynamodb-crud-api.zip"
         },
         "Handler": "post/delete.deletePost",
         "Runtime": "nodejs12.x",
@@ -347,54 +347,54 @@
         "DeletePostLogGroup"
       ]
     },
-    "ListPostsLambdaVersion7IZberyvLepSZmgC3gJE3QGD4yARhtlzWdQc8y0wZg": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "ListPostsLambdaFunction"
-        },
-        "CodeSha256": "w46LB0ZTwiQzmnkC+DbwjVVIYMhunqwVIAm4tyZsN5M="
-      }
-    },
-    "CreatePostLambdaVersionYle2SgUEDPabOic7wS8RqE1q0peRZOj4SMafprXmU": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CreatePostLambdaFunction"
-        },
-        "CodeSha256": "w46LB0ZTwiQzmnkC+DbwjVVIYMhunqwVIAm4tyZsN5M="
-      }
-    },
-    "GetPostLambdaVersiongGhnL6fIgIJrCUdKVWpuuNBY5MTFeDAYyczoxO4bA": {
+    "GetPostLambdaVersionRIuojpPX4QAV6YVfHH4H1saaOSYGLaNsg4z912Xzpa8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetPostLambdaFunction"
         },
-        "CodeSha256": "w46LB0ZTwiQzmnkC+DbwjVVIYMhunqwVIAm4tyZsN5M="
+        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
       }
     },
-    "UpdatePostLambdaVersioneeRBVrt841HtXi5bxc7KEzMfW15NdB0zurn4O61ONY": {
+    "CreatePostLambdaVersionUDve4vmrwaLIfMiBXsJPaurtZx2K5A13F1cASAXHYJ0": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CreatePostLambdaFunction"
+        },
+        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
+      }
+    },
+    "UpdatePostLambdaVersionMIY1eGtL0zQ6DynveNy929rtRDeDrtnmgn6Ra2GRcg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdatePostLambdaFunction"
         },
-        "CodeSha256": "w46LB0ZTwiQzmnkC+DbwjVVIYMhunqwVIAm4tyZsN5M="
+        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
       }
     },
-    "DeletePostLambdaVersionBksoowwZ7RI6hRo0hw41hapgLTpmqUP5sCCDOqH2XU": {
+    "DeletePostLambdaVersionE33wcoAodDAYn1fuUTZToOelExTt7nAt9MPpojF2qE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeletePostLambdaFunction"
         },
-        "CodeSha256": "w46LB0ZTwiQzmnkC+DbwjVVIYMhunqwVIAm4tyZsN5M="
+        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
+      }
+    },
+    "ListPostsLambdaVersiontJ8Bp3QTCibxvOfohfeGMfGf9c28Pgxcj65UybmAEc": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ListPostsLambdaFunction"
+        },
+        "CodeSha256": "vTHtMWO3w7Hw8RPHKFOak+tzYfH3edphMYR6l/57NsQ="
       }
     },
     "ApiGatewayRestApi": {
@@ -538,6 +538,186 @@
         },
         "ResourceId": {
           "Ref": "ApiGatewayResourcePostsList"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPostCreateOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePostCreate"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPostIdVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePostIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPostUpdateOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PATCH'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePostUpdate"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPostDeleteOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePostDelete"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -774,7 +954,7 @@
         "DeletePostLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1652187331545": {
+    "ApiGatewayDeployment1652189279380": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -784,6 +964,10 @@
       },
       "DependsOn": [
         "ApiGatewayMethodPostsListOptions",
+        "ApiGatewayMethodPostCreateOptions",
+        "ApiGatewayMethodPostIdVarOptions",
+        "ApiGatewayMethodPostUpdateOptions",
+        "ApiGatewayMethodPostDeleteOptions",
         "ApiGatewayMethodPostsListGet",
         "ApiGatewayMethodPostCreatePost",
         "ApiGatewayMethodPostIdVarGet",
@@ -1009,37 +1193,28 @@
         "Name": "sls-dynamodb-crud-api-dev-ServerlessDeploymentBucketName"
       }
     },
-    "ListPostsLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "ListPostsLambdaVersion7IZberyvLepSZmgC3gJE3QGD4yARhtlzWdQc8y0wZg"
-      },
-      "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-ListPostsLambdaFunctionQualifiedArn"
-      }
-    },
-    "CreatePostLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "CreatePostLambdaVersionYle2SgUEDPabOic7wS8RqE1q0peRZOj4SMafprXmU"
-      },
-      "Export": {
-        "Name": "sls-dynamodb-crud-api-dev-CreatePostLambdaFunctionQualifiedArn"
-      }
-    },
     "GetPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetPostLambdaVersiongGhnL6fIgIJrCUdKVWpuuNBY5MTFeDAYyczoxO4bA"
+        "Ref": "GetPostLambdaVersionRIuojpPX4QAV6YVfHH4H1saaOSYGLaNsg4z912Xzpa8"
       },
       "Export": {
         "Name": "sls-dynamodb-crud-api-dev-GetPostLambdaFunctionQualifiedArn"
       }
     },
+    "CreatePostLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CreatePostLambdaVersionUDve4vmrwaLIfMiBXsJPaurtZx2K5A13F1cASAXHYJ0"
+      },
+      "Export": {
+        "Name": "sls-dynamodb-crud-api-dev-CreatePostLambdaFunctionQualifiedArn"
+      }
+    },
     "UpdatePostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdatePostLambdaVersioneeRBVrt841HtXi5bxc7KEzMfW15NdB0zurn4O61ONY"
+        "Ref": "UpdatePostLambdaVersionMIY1eGtL0zQ6DynveNy929rtRDeDrtnmgn6Ra2GRcg"
       },
       "Export": {
         "Name": "sls-dynamodb-crud-api-dev-UpdatePostLambdaFunctionQualifiedArn"
@@ -1048,10 +1223,19 @@
     "DeletePostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeletePostLambdaVersionBksoowwZ7RI6hRo0hw41hapgLTpmqUP5sCCDOqH2XU"
+        "Ref": "DeletePostLambdaVersionE33wcoAodDAYn1fuUTZToOelExTt7nAt9MPpojF2qE"
       },
       "Export": {
         "Name": "sls-dynamodb-crud-api-dev-DeletePostLambdaFunctionQualifiedArn"
+      }
+    },
+    "ListPostsLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ListPostsLambdaVersiontJ8Bp3QTCibxvOfohfeGMfGf9c28Pgxcj65UybmAEc"
+      },
+      "Export": {
+        "Name": "sls-dynamodb-crud-api-dev-ListPostsLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
