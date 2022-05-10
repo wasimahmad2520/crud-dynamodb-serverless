@@ -34,7 +34,8 @@ provider:
       
 
   #     Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMO_TABLE_NAME}"
-
+plugins:
+  - "serverless-pseudo-parameters"
 functions:
   listPosts:
     handler: post/list.listPosts
