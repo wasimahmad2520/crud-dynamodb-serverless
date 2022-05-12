@@ -9,7 +9,8 @@ app: wasimahmad-dynamodb-crud-api
 #     "tags":"udpated tags here"
     
 # }
-
+# detail for serverless.yaml file
+# https://www.serverless.com/framework/docs/providers/spotinst/guide/serverless.yml
 service: wasimahmad-dynamodb-crud-api
 
 provider:
